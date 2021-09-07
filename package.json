@@ -24,7 +24,7 @@
     "url": "https://github.com/0x84A/loot.js/issues"
   },
   "homepage": "https://lootjs.org",
-  "dependencies": {
-    "ethers": "^5.4.6"
+  "peerDependencies": {
+    "ethers": "5.4.x"
   }
 }
