@@ -1,0 +1,23 @@
+{
+  "name": "loot.js",
+  "version": "1.0.0",
+  "description": "loot.js is a library that allow you to interact with loot and loot-like contracts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x84A/loot.js.git"
+  },
+  "keywords": [
+    "loot",
+    "lootproject"
+  ],
+  "author": "0x84A",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0x84A/loot.js/issues"
+  },
+  "homepage": "https://github.com/0x84A/loot.js#readme"
+}
