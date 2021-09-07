@@ -18,6 +18,7 @@ class Loot {
   async bag(lootId) {
     if (lootId > 0) {
       let loot = (lootId < 8001) ? this.loot : this.moreLoot;
+      let type = (lootId < 8001) ? "Loot": "More Loot";
 
       const [chest, foot, hand, head, neck, ring, waist, weapon] =
         await Promise.all([
@@ -32,6 +33,8 @@ class Loot {
         ]);
 
       let bag = {
+        id: lootId,
+        type: type,
         chest: chest,
         foot: foot,
         hand: hand,
