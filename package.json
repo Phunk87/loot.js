@@ -1,6 +1,6 @@
 {
   "name": "loot.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "loot.js is a library that allow you to interact with loot and loot-like contracts.",
   "source": "./src/index.js",
   "main": "index.js",
