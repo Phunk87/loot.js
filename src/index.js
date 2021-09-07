@@ -51,19 +51,43 @@ class Loot {
     return {};
   }
 
-  async lootIdsInWallet(address) {
-    const balance = await this.loot.balanceOf(address);
+  async numberOfOGBagsInWallet(address) {
+    let balance = await this.loot.balanceOf(address);
+
+    return balance.toNumber();
+  }
+
+  async numberOfMoreBagsInWallet(address) {
+    let balance = await this.moreLoot.balanceOf(address);
+
+    return balance.toNumber();
+  }
+
+  async numberOfBagsInWallet(address, excludingMoreLoot=true) {
+    return await this.numberOfOGBagsInWallet(address) + (excludingMoreLoot ? 0 : await this.numberOfMoreBagsInWallet(address));
+  }
+
+  async lootIdsInWallet(address, excludingMoreLoot=true) {
+    const numberOfBags = await this.numberOfBagsInWallet(address);
     let lootIds = [];
-    for (var i = 0;i < balance; i++) {
-      let lootId = await this.loot.tokenOfOwnerByIndex(address, i);
-      lootIds.push(lootId.toString());
+    let tasks = [];
+    for (var i = 0;i < numberOfBags; i++) {
+      tasks.push(this.loot.tokenOfOwnerByIndex(address, i));
+    }
+
+    if (!excludingMoreLoot) {
+      const numberOfMoreBags = await this.numberOfMoreBagsInWallet(address);
+      for (var i = 0;i < numberOfMoreBags; i++) {
+        tasks.push(this.moreLoot.tokenOfOwnerByIndex(address, i));
+      }
+    }
+
+    const data = await Promise.all(tasks);
+    for (const lootIdBN of data) {
+      lootIds.push(lootIdBN.toString());
     }
 
     return lootIds;
-  }
-
-  async build(address) {
-
   }
 }
 
