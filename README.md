@@ -1,5 +1,11 @@
 # loot.js
 
+## Install
+
+```Shell
+npm install --save loot.js
+```
+
 ## Get started
 
 ```javascript
